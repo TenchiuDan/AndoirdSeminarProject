@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResult;
@@ -38,7 +39,12 @@ public class MainActivity extends AppCompatActivity {
                new ActivityResultCallback<ActivityResult>() {
            @Override
            public void onActivityResult(ActivityResult o) {
-
+                if(o.getResultCode()==RESULT_OK)
+                {
+                    Intent intent = o.getData();
+                    String response = intent.getStringExtra("response");
+                    Toast.makeText(MainActivity.this,response,Toast.LENGTH_LONG);
+                }
            }
        });
 
